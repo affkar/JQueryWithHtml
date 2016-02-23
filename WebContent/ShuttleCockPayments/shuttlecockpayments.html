@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Shuttle Pay-as-you-go Payments this term</title>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+//Load the Visualization API and the piechart package.
+google.charts.load('current', {'packages':['corechart']});
+
+// Set a callback to run when the Google Visualization API is loaded.
+google.charts.setOnLoadCallback(drawChart);
+function drawChart(){
+	//var queryString=encodeURIComponent('SELECT B76:83, C76:83');
+	//var googlesheeturl='https://docs.google.com/spreadsheets/d/10dmfdsyR8J7l4hpK3XkUGQspKQRXh7flcntwqduCKqw/edit#gid=0&tq='+queryString;
+	var queryString=encodeURIComponent('SELECT A, B LIMIT 10 OFFSET 1');
+	var googlesheeturl='https://docs.google.com/spreadsheets/d/1GYc-orkVvMHvZ23tpLnUo6XRmqLMwB4FKO0bnZlhkUA/edit#gid=4&RANGE=A2:B9';
+	var query = google.visualization.Query(googlesheeturl);
+	query.send(handleQueryResponse);
+}
+function handleQueryResponse(response) {
+	  var data = response.getDataTable();
+	  var chart = new google.visualization.Chart(document.getElementById('columnchart'));
+	  chart.draw(data, null);
+}
+</script>
+
+</head>
+<body>
+<div id="columnchart"></div>
+</body>
+</html>
